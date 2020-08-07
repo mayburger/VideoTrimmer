@@ -25,8 +25,6 @@ package com.mayburger.videotrimmer
 
 import android.animation.Animator
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 import android.net.Uri
@@ -52,8 +50,8 @@ import com.mayburger.videotrimmer.utils.TrimVideoUtils
 import com.mayburger.videotrimmer.utils.UiThreadExecutor
 import com.mayburger.videotrimmer.view.ProgressBarView
 import com.mayburger.videotrimmer.view.RangeSeekBarView
-import com.mayburger.videotrimmer.view.Thumb
 import com.mayburger.videotrimmer.view.TimeLineView
+import life.knowledge4.videotrimmer.view.Thumb
 import java.io.File
 import java.lang.ref.WeakReference
 import java.util.*
@@ -166,6 +164,7 @@ class H5VideoTrimmer @JvmOverloads constructor(
                 index: Int,
                 value: Float
             ) {
+                initializePause(true)
                 // Do nothing
             }
 
@@ -461,26 +460,13 @@ class H5VideoTrimmer @JvmOverloads constructor(
         )
     }
 
-    fun getThumb(progress: Int): Bitmap {
-        val thumbView = LayoutInflater.from(context).inflate(R.layout.thumb, null, false)
-        (thumbView.findViewById(R.id.text) as TextView).text = progress.toString() + ""
-        thumbView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-        val bitmap = Bitmap.createBitmap(thumbView.measuredWidth, thumbView.measuredHeight, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
-        thumbView.layout(0, 0, thumbView.measuredWidth, thumbView.measuredHeight)
-        thumbView.draw(canvas)
-        return bitmap
-    }
-
     private fun onSeekThumbs(index: Int, value: Float) {
         when (index) {
             Thumb.LEFT -> {
-                mRangeSeekBarView?.thumbs?.elementAt(Thumb.LEFT)?.bitmap = getThumb(0)
                 mStartPosition = (mDuration * value / 100L).toInt()
                 mVideoView!!.seekTo(mStartPosition)
             }
             Thumb.RIGHT -> {
-                mRangeSeekBarView?.thumbs?.elementAt(Thumb.RIGHT)?.bitmap = getThumb(0)
                 mEndPosition = (mDuration * value / 100L).toInt()
             }
         }

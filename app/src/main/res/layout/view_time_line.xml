@@ -80,43 +80,56 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:background="#51FFFFFF"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="8dp">
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+            <ImageView
+                android:id="@+id/trimmer_left"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_trimmer_left"
+                android:layout_height="wrap_content"/>
+            <View
+                android:layout_width="match_parent"
+                android:background="#6E7071"
+                android:layout_toRightOf="@id/trimmer_left"
+                android:layout_toLeftOf="@id/trimmer_right"
+                android:layout_height="40dp"/>
+            <ImageView
+                android:id="@+id/trimmer_right"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_trimmer_right"
+                android:layout_height="wrap_content"/>
 
             <com.mayburger.videotrimmer.view.TimeLineView
                 android:id="@+id/timeLineView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="12dp" />
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp" />
 
             <com.mayburger.videotrimmer.view.ProgressBarView
                 android:id="@+id/headerProgress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="12dp" />
+                android:layout_alignTop="@id/timeLineBar"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp" />
 
             <com.mayburger.videotrimmer.view.ProgressBarView
                 android:id="@+id/footerProgress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/timeLineView"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="12dp" />
+                android:layout_alignBottom="@id/timeLineBar"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp" />
 
             <SeekBar
                 android:id="@+id/handlerTop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/timeLineView"
-                android:layout_marginTop="40dp"
                 android:progressDrawable="@android:color/transparent"
                 android:thumb="@drawable/ic_handle"
                 android:visibility="gone" />

@@ -7,7 +7,7 @@
     <color name="line_color">#FF15FF00</color>
     <color name="progress_color">@color/colorPrimary</color>
     <color name="shadow_color">#FF000000</color>
-    <dimen name="frames_video_height">40dip</dimen>
+    <dimen name="frames_video_height">32dip</dimen>
     <dimen name="progress_video_line_height">4dp</dimen>
     <string name="cancel">Cancel</string>
     <string name="kilobyte">KB</string>

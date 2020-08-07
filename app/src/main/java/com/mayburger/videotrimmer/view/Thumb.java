@@ -29,10 +29,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -106,32 +102,16 @@ public class Thumb {
             th.setIndex(i);
             if (i == 0) {
                 int resImageLeft = R.drawable.ic_thumb_left;
-                th.setBitmap(getThumb(context,getBitmapFromVectorDrawable(context,resImageLeft)));
+                th.setBitmap(getBitmapFromVectorDrawable(context,resImageLeft));
             } else {
                 int resImageRight = R.drawable.ic_thumb_right;
-                th.setBitmap(getThumb(context,getBitmapFromVectorDrawable(context,resImageRight)));
+                th.setBitmap(getBitmapFromVectorDrawable(context,resImageRight));
             }
 
             thumbs.add(th);
         }
         return thumbs;
     }
-
-     static Bitmap getThumb(Context context,Bitmap thumbBitmap){
-        View thumbView = LayoutInflater.from(context).inflate(R.layout.thumb, null,false);
-        TextView text = thumbView.findViewById(R.id.text);
-        ImageView image = thumbView.findViewById(R.id.thumb);
-        image.setImageBitmap(thumbBitmap);
-        text.setText("0");
-        text.setVisibility(View.INVISIBLE);
-        thumbView.measure(View.MeasureSpec.UNSPECIFIED,View.MeasureSpec.UNSPECIFIED);
-        Bitmap bitmap = Bitmap.createBitmap(thumbView.getMeasuredWidth(),thumbView.getMeasuredHeight(),Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        thumbView.layout(0,0,thumbView.getMeasuredWidth(),thumbView.getMeasuredHeight());
-        thumbView.draw(canvas);
-        return bitmap;
-    }
-
 
     public static Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
         Drawable drawable = ContextCompat.getDrawable(context, drawableId);

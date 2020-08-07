@@ -106,7 +106,7 @@ public class RangeSeekBarView extends View {
         int minW = getPaddingLeft() + getPaddingRight() + getSuggestedMinimumWidth();
         mViewWidth = resolveSizeAndState(minW, widthMeasureSpec, 1);
 
-        int minH = getPaddingBottom() + getPaddingTop() + (int) mThumbHeight + mHeightTimeLine;
+        int minH = getPaddingBottom() + getPaddingTop() + (int) mThumbHeight;
         int viewHeight = resolveSizeAndState(minH, heightMeasureSpec, 1);
 
         setMeasuredDimension(mViewWidth, viewHeight);
@@ -315,13 +315,13 @@ public class RangeSeekBarView extends View {
                 if (th.getIndex() == 0) {
                     final float x = th.getPos() + getPaddingLeft();
                     if (x > mPixelRangeMin) {
-                        Rect mRect = new Rect((int) mThumbWidth, 40, (int) (x + mThumbWidth), mHeightTimeLine);
+                        Rect mRect = new Rect(0, 0, (int) (x + mThumbWidth), (int)(mThumbHeight*2));
                         canvas.drawRect(mRect, mShadow);
                     }
                 } else {
                     final float x = th.getPos() - getPaddingRight();
                     if (x < mPixelRangeMax) {
-                        Rect mRect = new Rect((int) x, 40, (int) (mViewWidth - mThumbWidth), mHeightTimeLine);
+                        Rect mRect = new Rect((int) x, 0, mViewWidth, (int)(mThumbHeight*2));
                         canvas.drawRect(mRect, mShadow);
                     }
                 }
