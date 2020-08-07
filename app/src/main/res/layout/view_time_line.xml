@@ -78,28 +78,30 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp">
 
             <ImageView
                 android:id="@+id/trimmer_left"
                 android:layout_width="wrap_content"
-                android:src="@drawable/ic_trimmer_left"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_trimmer_left" />
+
             <View
                 android:layout_width="match_parent"
-                android:background="#6E7071"
-                android:layout_toRightOf="@id/trimmer_left"
+                android:layout_height="40dp"
                 android:layout_toLeftOf="@id/trimmer_right"
-                android:layout_height="40dp"/>
+                android:layout_toRightOf="@id/trimmer_left"
+                android:background="#6E7071" />
+
             <ImageView
                 android:id="@+id/trimmer_right"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_trimmer_right"
-                android:layout_height="wrap_content"/>
+                android:src="@drawable/ic_trimmer_right" />
 
             <com.mayburger.videotrimmer.view.TimeLineView
                 android:id="@+id/timeLineView"
@@ -157,28 +159,27 @@
 
             <Button
                 android:id="@+id/btCancel"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/black_button_background"
-                android:text="@string/cancel"
+                android:paddingLeft="16dp"
+                android:text="Cancel"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
                 android:textColor="@android:color/white" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@color/line_button" />
 
             <Button
                 android:id="@+id/btSave"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/black_button_background"
-                android:text="@string/save"
-                android:textColor="@android:color/white" />
+                android:paddingRight="16dp"
+                android:text="Done"
+                android:textAlignment="textEnd"
+                android:textAllCaps="false"
+                android:textColor="@color/background_progress_color" />
 
         </LinearLayout>
 
