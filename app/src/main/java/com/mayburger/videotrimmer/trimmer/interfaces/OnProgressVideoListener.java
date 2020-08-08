@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.mayburger.videotrimmer.interfaces;
+package com.mayburger.videotrimmer.trimmer.interfaces;
 
-public interface OnK4LVideoListener {
+public interface OnProgressVideoListener {
 
-    void onVideoPrepared();
+    void updateProgress(int time, int max, float scale);
 }

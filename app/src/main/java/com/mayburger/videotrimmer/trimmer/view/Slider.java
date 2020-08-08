@@ -1,4 +1,4 @@
-package com.mayburger.videotrimmer.view;
+package com.mayburger.videotrimmer.trimmer.view;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

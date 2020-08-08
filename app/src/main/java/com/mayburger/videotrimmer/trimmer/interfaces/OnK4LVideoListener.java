@@ -21,17 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.mayburger.videotrimmer.interfaces;
+package com.mayburger.videotrimmer.trimmer.interfaces;
 
-import android.net.Uri;
+public interface OnK4LVideoListener {
 
-public interface OnTrimVideoListener {
-
-    void onTrimStarted();
-
-    void getResult(final Uri uri);
-
-    void cancelAction();
-
-    void onError(final String message);
+    void onVideoPrepared();
 }

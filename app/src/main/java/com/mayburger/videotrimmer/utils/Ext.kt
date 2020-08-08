@@ -1,4 +1,4 @@
-package com.mayburger.videotrimmer
+package com.mayburger.videotrimmer.utils
 
 import android.content.Context
 import android.content.res.Resources

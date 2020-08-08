@@ -103,7 +103,7 @@
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_trimmer_right" />
 
-            <com.mayburger.videotrimmer.view.TimeLineView
+            <com.mayburger.videotrimmer.trimmer.view.TimeLineView
                 android:id="@+id/timeLineView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp" />
 
-            <com.mayburger.videotrimmer.view.ProgressBarView
+            <com.mayburger.videotrimmer.trimmer.view.ProgressBarView
                 android:id="@+id/headerProgress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp" />
 
-            <com.mayburger.videotrimmer.view.ProgressBarView
+            <com.mayburger.videotrimmer.trimmer.view.ProgressBarView
                 android:id="@+id/footerProgress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,12 +131,15 @@
                 android:id="@+id/handlerTop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/timeLineView"
+                android:layout_alignRight="@id/timeLineView"
+                android:visibility="gone"
+                android:thumbOffset="16dp"
                 android:layout_alignTop="@+id/timeLineView"
                 android:progressDrawable="@android:color/transparent"
-                android:thumb="@drawable/ic_handle"
-                android:visibility="gone" />
+                android:thumb="@drawable/ic_handle" />
 
-            <com.mayburger.videotrimmer.view.RangeSeekBarView
+            <com.mayburger.videotrimmer.trimmer.view.RangeSeekBarView
                 android:id="@+id/timeLineBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

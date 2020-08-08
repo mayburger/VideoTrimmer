@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.mayburger.videotrimmer.view;
+package com.mayburger.videotrimmer.trimmer.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -34,8 +34,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.mayburger.videotrimmer.R;
-import com.mayburger.videotrimmer.interfaces.OnProgressVideoListener;
-import com.mayburger.videotrimmer.interfaces.OnRangeSeekBarListener;
+import com.mayburger.videotrimmer.trimmer.interfaces.OnProgressVideoListener;
+import com.mayburger.videotrimmer.trimmer.interfaces.OnRangeSeekBarListener;
 
 public class ProgressBarView extends View implements OnRangeSeekBarListener, OnProgressVideoListener {
 

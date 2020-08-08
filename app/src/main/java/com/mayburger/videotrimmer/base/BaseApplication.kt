@@ -1,4 +1,4 @@
-package com.mayburger.videotrimmer
+package com.mayburger.videotrimmer.base
 
 import android.app.Application
 import com.orhanobut.hawk.Hawk

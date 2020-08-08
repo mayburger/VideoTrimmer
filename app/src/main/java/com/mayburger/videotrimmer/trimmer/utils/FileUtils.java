@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.mayburger.videotrimmer.utils;
+package com.mayburger.videotrimmer.trimmer.utils;
 
 import android.annotation.SuppressLint;
 import android.content.ContentUris;

@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.mayburger.videotrimmer.utils;
+package com.mayburger.videotrimmer.trimmer.utils;
 
 import android.net.Uri;
 import android.util.Log;
@@ -36,7 +36,7 @@ import com.googlecode.mp4parser.authoring.builder.DefaultMp4Builder;
 import com.googlecode.mp4parser.authoring.container.mp4.MovieCreator;
 import com.googlecode.mp4parser.authoring.tracks.AppendTrack;
 import com.googlecode.mp4parser.authoring.tracks.CroppedTrack;
-import com.mayburger.videotrimmer.interfaces.OnTrimVideoListener;
+import com.mayburger.videotrimmer.trimmer.interfaces.OnTrimVideoListener;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -50,12 +50,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+
 public class TrimVideoUtils {
 
     private static final String TAG = TrimVideoUtils.class.getSimpleName();
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static void startTrim(@NonNull File src, @NonNull String dst, long startMs, long endMs, @NonNull OnTrimVideoListener callback) throws IOException {
+    public static void startTrim(@NonNull String src, @NonNull String dst, long startMs, long endMs, @NonNull OnTrimVideoListener callback) throws IOException {
         final String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
         final String fileName = "MP4_" + timeStamp + ".mp4";
         final String filePath = dst + fileName;
@@ -66,11 +66,10 @@ public class TrimVideoUtils {
         genVideoUsingMp4Parser(src, file, startMs, endMs, callback);
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    private static void genVideoUsingMp4Parser(@NonNull File src, @NonNull File dst, long startMs, long endMs, @NonNull OnTrimVideoListener callback) throws IOException {
+    private static void genVideoUsingMp4Parser(@NonNull String src, @NonNull File dst, long startMs, long endMs, @NonNull OnTrimVideoListener callback) throws IOException {
         // NOTE: Switched to using FileDataSourceViaHeapImpl since it does not use memory mapping (VM).
         // Otherwise we get OOM with large movie files.
-        Movie movie = MovieCreator.build(new FileDataSourceViaHeapImpl(src.getAbsolutePath()));
+        Movie movie = MovieCreator.build(new FileDataSourceViaHeapImpl(src));
 
         List<Track> tracks = movie.getTracks();
         movie.setTracks(new LinkedList<Track>());
@@ -139,22 +138,8 @@ public class TrimVideoUtils {
 
         fc.close();
         fos.close();
-        callback.getResult(Uri.parse(dst.toString()));
-    }
-
-    public static String stringForTime(int timeMs) {
-        int totalSeconds = timeMs / 1000;
-
-        int seconds = totalSeconds % 60;
-        int minutes = (totalSeconds / 60) % 60;
-        int hours = totalSeconds / 3600;
-
-        Formatter mFormatter = new Formatter();
-        if (hours > 0) {
-            return mFormatter.format("%d:%02d:%02d", hours, minutes, seconds).toString();
-        } else {
-            return mFormatter.format("%02d:%02d", minutes, seconds).toString();
-        }
+        if (callback != null)
+            callback.getResult(Uri.parse(dst.toString()));
     }
 
     private static double correctTimeToSyncSample(@NonNull Track track, double cutHere, boolean next) {
@@ -184,5 +169,20 @@ public class TrimVideoUtils {
             previous = timeOfSyncSample;
         }
         return timeOfSyncSamples[timeOfSyncSamples.length - 1];
+    }
+
+    public static String stringForTime(int timeMs) {
+        int totalSeconds = timeMs / 1000;
+
+        int seconds = totalSeconds % 60;
+        int minutes = (totalSeconds / 60) % 60;
+        int hours = totalSeconds / 3600;
+
+        Formatter mFormatter = new Formatter();
+        if (hours > 0) {
+            return mFormatter.format("%d:%02d:%02d", hours, minutes, seconds).toString();
+        } else {
+            return mFormatter.format("%02d:%02d", minutes, seconds).toString();
+        }
     }
 }

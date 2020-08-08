@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.mayburger.videotrimmer.interfaces;
+package com.mayburger.videotrimmer.trimmer.interfaces;
 
-import com.mayburger.videotrimmer.view.RangeSeekBarView;
+import com.mayburger.videotrimmer.trimmer.view.RangeSeekBarView;
 
 public interface OnRangeSeekBarListener {
     void onCreate(RangeSeekBarView rangeSeekBarView, int index, float value);

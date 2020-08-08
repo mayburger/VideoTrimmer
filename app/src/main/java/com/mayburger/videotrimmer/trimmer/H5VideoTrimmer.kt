@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.mayburger.videotrimmer
+package com.mayburger.videotrimmer.trimmer
 
 import android.animation.Animator
 import android.content.Context
@@ -40,17 +40,17 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
-import com.mayburger.videotrimmer.H5VideoTrimmer
-import com.mayburger.videotrimmer.interfaces.OnK4LVideoListener
-import com.mayburger.videotrimmer.interfaces.OnProgressVideoListener
-import com.mayburger.videotrimmer.interfaces.OnRangeSeekBarListener
-import com.mayburger.videotrimmer.interfaces.OnTrimVideoListener
-import com.mayburger.videotrimmer.utils.BackgroundExecutor
-import com.mayburger.videotrimmer.utils.TrimVideoUtils
-import com.mayburger.videotrimmer.utils.UiThreadExecutor
-import com.mayburger.videotrimmer.view.ProgressBarView
-import com.mayburger.videotrimmer.view.RangeSeekBarView
-import com.mayburger.videotrimmer.view.TimeLineView
+import com.mayburger.videotrimmer.R
+import com.mayburger.videotrimmer.trimmer.interfaces.OnK4LVideoListener
+import com.mayburger.videotrimmer.trimmer.interfaces.OnProgressVideoListener
+import com.mayburger.videotrimmer.trimmer.interfaces.OnRangeSeekBarListener
+import com.mayburger.videotrimmer.trimmer.interfaces.OnTrimVideoListener
+import com.mayburger.videotrimmer.trimmer.utils.BackgroundExecutor
+import com.mayburger.videotrimmer.trimmer.utils.TrimVideoUtils
+import com.mayburger.videotrimmer.trimmer.utils.UiThreadExecutor
+import com.mayburger.videotrimmer.trimmer.view.ProgressBarView
+import com.mayburger.videotrimmer.trimmer.view.RangeSeekBarView
+import com.mayburger.videotrimmer.trimmer.view.TimeLineView
 import life.knowledge4.videotrimmer.view.Thumb
 import java.io.File
 import java.lang.ref.WeakReference
@@ -227,7 +227,8 @@ class H5VideoTrimmer @JvmOverloads constructor(
             val METADATA_KEY_DURATION =
                 mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
                     ?.toLong()
-            val file = File(mSrc!!.path)
+            val file = File(mSrc.toString())
+            println("IS FILE EX ${file}")
             if (mTimeVideo < MIN_TIME_FRAME) {
                 if (METADATA_KEY_DURATION?.minus(mEndPosition) ?: 0 > MIN_TIME_FRAME - mTimeVideo) {
                     mEndPosition += MIN_TIME_FRAME - mTimeVideo
@@ -243,7 +244,7 @@ class H5VideoTrimmer @JvmOverloads constructor(
                     override fun execute() {
                         try {
                             TrimVideoUtils.startTrim(
-                                file,
+                                mSrc.toString(),
                                 destinationPath!!,
                                 mStartPosition.toLong(),
                                 mEndPosition.toLong(),
@@ -348,8 +349,8 @@ class H5VideoTrimmer @JvmOverloads constructor(
      *
      * @param finalPath the full path
      */
-    private var destinationPath: String?
-        private get() {
+    var destinationPath: String?
+        get() {
             if (mFinalPath == null) {
                 val folder = Environment.getExternalStorageDirectory()
                 mFinalPath = folder.path + File.separator

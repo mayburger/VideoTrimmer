@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.mayburger.videotrimmer.view;
+package com.mayburger.videotrimmer.trimmer.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -35,8 +35,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.mayburger.videotrimmer.R;
-import com.mayburger.videotrimmer.utils.BackgroundExecutor;
-import com.mayburger.videotrimmer.utils.UiThreadExecutor;
+import com.mayburger.videotrimmer.trimmer.utils.BackgroundExecutor;
+import com.mayburger.videotrimmer.trimmer.utils.UiThreadExecutor;
 
 public class TimeLineView extends View {
 

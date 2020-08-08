@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TrimActivity">
+    tools:context=".VideoActivity">
 
-    <com.mayburger.videotrimmer.trimmer.H5VideoTrimmer
-        android:id="@+id/timeLine"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" />
+<VideoView
+    android:id="@+id/videoView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
 
 </RelativeLayout>
