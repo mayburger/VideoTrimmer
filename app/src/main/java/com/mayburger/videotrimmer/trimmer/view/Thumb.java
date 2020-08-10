@@ -101,10 +101,10 @@ public class Thumb {
             Thumb th = new Thumb();
             th.setIndex(i);
             if (i == 0) {
-                int resImageLeft = R.drawable.ic_thumb_left;
+                int resImageLeft = R.drawable.ic_thumb_left_dark;
                 th.setBitmap(getBitmapFromVectorDrawable(context,resImageLeft));
             } else {
-                int resImageRight = R.drawable.ic_thumb_right;
+                int resImageRight = R.drawable.ic_thumb_right_dark;
                 th.setBitmap(getBitmapFromVectorDrawable(context,resImageRight));
             }
 

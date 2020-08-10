@@ -42,7 +42,14 @@ public class ProgressBarView extends View implements OnRangeSeekBarListener, OnP
     private int mProgressHeight;
     private int mViewWidth;
 
-    private final Paint mBackgroundColor = new Paint();
+    Paint mBackgroundColor = new Paint();
+
+
+    public void setBackgroundColor(int color) {
+        mBackgroundColor.setAntiAlias(true);
+        mBackgroundColor.setColor(color);
+    }
+
     private final Paint mProgressColor = new Paint();
 
     private Rect mBackgroundRect;
@@ -59,7 +66,7 @@ public class ProgressBarView extends View implements OnRangeSeekBarListener, OnP
 
     private void init() {
         int lineProgress = ContextCompat.getColor(getContext(), R.color.progress_color);
-        int lineBackground = ContextCompat.getColor(getContext(), R.color.background_progress_color);
+        int lineBackground = ContextCompat.getColor(getContext(), R.color.background_progress_color_dark);
 
         mProgressHeight = getContext().getResources().getDimensionPixelOffset(R.dimen.progress_video_line_height);
 

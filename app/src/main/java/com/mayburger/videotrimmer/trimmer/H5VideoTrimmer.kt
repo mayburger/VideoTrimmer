@@ -40,6 +40,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
+import androidx.core.content.ContextCompat
 import com.mayburger.videotrimmer.R
 import com.mayburger.videotrimmer.trimmer.interfaces.OnK4LVideoListener
 import com.mayburger.videotrimmer.trimmer.interfaces.OnProgressVideoListener
@@ -50,8 +51,8 @@ import com.mayburger.videotrimmer.trimmer.utils.TrimVideoUtils
 import com.mayburger.videotrimmer.trimmer.utils.UiThreadExecutor
 import com.mayburger.videotrimmer.trimmer.view.ProgressBarView
 import com.mayburger.videotrimmer.trimmer.view.RangeSeekBarView
+import com.mayburger.videotrimmer.trimmer.view.Thumb
 import com.mayburger.videotrimmer.trimmer.view.TimeLineView
-import life.knowledge4.videotrimmer.view.Thumb
 import java.io.File
 import java.lang.ref.WeakReference
 import java.util.*
@@ -426,7 +427,7 @@ class H5VideoTrimmer @JvmOverloads constructor(
     }
 
     private fun setSeekBarPosition() {
-        if (mDuration >= mMaxDuration) {
+        if (mDuration >= mMaxDuration && mMaxDuration != 0) {
             mStartPosition = mDuration / 2 - mMaxDuration / 2
             mEndPosition = mDuration / 2 + mMaxDuration / 2
             mRangeSeekBarView!!.setThumbValue(0, mStartPosition * 100 / mDuration.toFloat())
@@ -471,6 +472,34 @@ class H5VideoTrimmer @JvmOverloads constructor(
                 mEndPosition = (mDuration * value / 100L).toInt()
             }
         }
+
+        val mNotZeroEndPosition = if (mEndPosition != 0){
+            mEndPosition
+        } else{
+            1
+        }
+
+        if ((mStartPosition == 0 && mEndPosition == mDuration)){
+            headerProgress?.setBackgroundColor(ContextCompat.getColor(context, R.color.background_progress_color_dark))
+            footerProgress?.setBackgroundColor(ContextCompat.getColor(context, R.color.background_progress_color_dark))
+            mRangeSeekBarView?.thumbs?.elementAt(Thumb.LEFT)?.bitmap = Thumb.getBitmapFromVectorDrawable(context,R.drawable.ic_thumb_left_dark)
+            mRangeSeekBarView?.thumbs?.elementAt(Thumb.RIGHT)?.bitmap = Thumb.getBitmapFromVectorDrawable(context,R.drawable.ic_thumb_right_dark)
+        } else if(mMaxDuration != 0){
+            if((((mNotZeroEndPosition - mStartPosition) / 1000) * 1000)== mMaxDuration){
+                headerProgress?.setBackgroundColor(ContextCompat.getColor(context, R.color.background_progress_color_dark))
+                footerProgress?.setBackgroundColor(ContextCompat.getColor(context, R.color.background_progress_color_dark))
+                mRangeSeekBarView?.thumbs?.elementAt(Thumb.LEFT)?.bitmap = Thumb.getBitmapFromVectorDrawable(context,R.drawable.ic_thumb_left_dark)
+                mRangeSeekBarView?.thumbs?.elementAt(Thumb.RIGHT)?.bitmap = Thumb.getBitmapFromVectorDrawable(context,R.drawable.ic_thumb_right_dark)
+            }
+        } else{
+            headerProgress?.setBackgroundColor(ContextCompat.getColor(context, R.color.background_progress_color))
+            footerProgress?.setBackgroundColor(ContextCompat.getColor(context, R.color.background_progress_color))
+            mRangeSeekBarView?.thumbs?.elementAt(Thumb.LEFT)?.bitmap = Thumb.getBitmapFromVectorDrawable(context,R.drawable.ic_thumb_left)
+            mRangeSeekBarView?.thumbs?.elementAt(Thumb.RIGHT)?.bitmap = Thumb.getBitmapFromVectorDrawable(context,R.drawable.ic_thumb_right)
+        }
+//        println("This is the start position ${mStartPosition}")
+//        println("This is the end position ${mEndPosition}")
+//        println("This is the duration ${mDuration}")
         setProgressBarPosition(mStartPosition)
         setTimeFrames()
         mTimeVideo = mEndPosition - mStartPosition

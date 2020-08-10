@@ -78,10 +78,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp">
 
             <ImageView
                 android:id="@+id/trimmer_left"
@@ -91,7 +91,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_toLeftOf="@id/trimmer_right"
                 android:layout_toRightOf="@id/trimmer_left"
                 android:background="#6E7071" />
@@ -108,24 +108,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
 
             <com.mayburger.videotrimmer.trimmer.view.ProgressBarView
                 android:id="@+id/headerProgress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/timeLineBar"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
 
             <com.mayburger.videotrimmer.trimmer.view.ProgressBarView
                 android:id="@+id/footerProgress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/timeLineBar"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
 
             <SeekBar
                 android:id="@+id/handlerTop"
@@ -133,9 +133,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/timeLineView"
                 android:layout_alignRight="@id/timeLineView"
+                android:thumbOffset="20dp"
                 android:visibility="gone"
-                android:thumbOffset="16dp"
-                android:layout_alignTop="@+id/timeLineView"
+                android:layout_centerVertical="true"
                 android:progressDrawable="@android:color/transparent"
                 android:thumb="@drawable/ic_handle" />
 
@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/black_button_background"
-                android:paddingLeft="16dp"
+                android:paddingLeft="20dp"
                 android:text="Cancel"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
@@ -178,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/black_button_background"
-                android:paddingRight="16dp"
+                android:paddingRight="20dp"
                 android:text="Done"
                 android:textAlignment="textEnd"
                 android:textAllCaps="false"

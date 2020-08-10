@@ -15,15 +15,11 @@ class TrimActivity : AppCompatActivity(), OnTrimVideoListener {
 
         val trimmer = timeLine
         val i = intent;
-//        content://com.google.android.apps.photos.contentprovider/-1/2/content%3A%2F%2Fmedia%2Fexternal%2Fvideo%2Fmedia%2F107700/ORIGINAL/NONE/video%2Fmp4/1845840048
-//        /-1/2/content:/media/external/video/media/107700/ORIGINAL/NONE/video/mp4/975675596
         if (i != null) {
             val path = i.getStringExtra(EXTRA_URI)
             trimmer.setVideoURI(Uri.parse(path))
-            trimmer.setMaxDuration(30000)
             trimmer.setOnTrimVideoListener(this)
         }
-
     }
 
     companion object {
@@ -41,6 +37,7 @@ class TrimActivity : AppCompatActivity(), OnTrimVideoListener {
 
     override fun getResult(uri: Uri?) {
         VideoActivity.newIntent(this, uri?.toString())
+        finish()
     }
 
     override fun onError(message: String?) {
